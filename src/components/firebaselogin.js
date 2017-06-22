@@ -1,6 +1,5 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import firebase from 'firebase'
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux';
 

@@ -1,5 +1,6 @@
 const initialState = {
-  userid: null
+  userid: null,
+  category: "",
 };
 
 

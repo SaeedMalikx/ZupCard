@@ -15,6 +15,7 @@ import Dialog from 'material-ui/Dialog';
 
 
 import CardList from './components/cardlist';
+import NewCard from './components/newcard';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,10 @@ class App extends Component {
 
     this.state = {
       menuopen: false,
-      loginopen: false
+      loginopen: false,
+      newcardopen: false,
+      settingsopen: false
+
     };
   }
 
@@ -32,9 +36,15 @@ class App extends Component {
   openlogin = () => {
     this.setState({loginopen: true})
   }
+  opennewcard = () => {
+    this.setState({newcardopen: true})
+  }
 
+  opensettings = () => {
+    this.setState({settingsopen: true})
+  }
   closelogin = () => {
-    this.setState({loginopen: false, menuopen: false})
+    this.setState({loginopen: false, menuopen: false, newcardopen: false, settingsopen: false})
   }
   render() {
 
@@ -48,11 +58,16 @@ class App extends Component {
           <span className="filler"/>
           <h3>Category</h3>
           <span className="filler"/>
+          <RaisedButton label="New Card" onClick={this.opennewcard}  />
           <RaisedButton label="Login" onClick={this.openlogin}  />
         </div>
 
         <Dialog modal={false} open={this.state.loginopen} onRequestClose={this.closelogin} autoDetectWindowHeight={true}>
                 <Firebaselogin closeloginform={this.closelogin}/>
+        </Dialog>
+
+        <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closelogin} autoDetectWindowHeight={true}>
+                <NewCard closeloginform={this.closelogin}/>
         </Dialog>
 
         <CardList/>

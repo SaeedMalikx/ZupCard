@@ -33,3 +33,10 @@ export const signin = ({email, password}) => dispatch => {
         dispatch({type: 'CREATE_USER', payload: user.uid})}
       });
 };
+
+export const addcard = ({front, back, userid}) => dispatch => {
+    firebase.database().ref('users').child(userid).child('cards').push({
+        'front': front,
+        'back': back
+    })
+}
