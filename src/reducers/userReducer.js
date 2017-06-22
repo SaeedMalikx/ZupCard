@@ -1,11 +1,14 @@
 const initialState = {
-  user: "Saeed",
-  movies: 1
+  userid: null
 };
 
 
-const user = (state = {...initialState}, action) => {
+const user = (state = initialState, action) => {
   switch(action.type) {
+    case "CREATE_USER": 
+        return Object.assign({}, state, {
+        userid: action.payload
+      })
     default:
       return state;
   }
