@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-const CREATE_USER = 'CREATE_USER'
+
 
 export const signup = ({email, password}) => dispatch => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -14,7 +14,7 @@ export const signup = ({email, password}) => dispatch => {
             }})
       .then(user => {
           if(user!= null){
-        dispatch({type: CREATE_USER, payload: user.uid})}
+        dispatch({type: "CREATE_USER", payload: user.uid})}
       });
 };
 
@@ -30,13 +30,44 @@ export const signin = ({email, password}) => dispatch => {
             }})
     .then(user => {
           if(user!= null){
-        dispatch({type: 'CREATE_USER', payload: user.uid})}
+        dispatch({type: "CREATE_USER", payload: user.uid})}
       });
 };
 
 export const addcard = ({front, back, userid}) => dispatch => {
-    firebase.database().ref('users').child(userid).child('cards').push({
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+    firebase.database().ref('users').child(user.uid).child('cards').push({
         'front': front,
         'back': back
+    })}
+}
+
+export const cardrefresh = () => dispatch => {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user != null) {
+            firebase.database().ref('users').child(user.uid).child('cards').on('value', snap =>{
+                
+                if (snap.val()) {
+                    let fcards = snap.val();
+                    let cardlist = [];
+                    for (let card in fcards) {
+                      cardlist.push({
+                        id: card,
+                        front: fcards[card].front,
+                        back: fcards[card].back
+                      })
+                      dispatch({type: "SET_CARDS", payload: cardlist}, { allowMore: true })
+                    }
+                } 
+            });
+        }
     })
+}
+
+export const deletecard = (id) => dispatch => {
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+        firebase.database().ref('users').child(user.uid).child('cards').child(id).remove()
+    }
 }

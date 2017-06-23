@@ -17,6 +17,8 @@ class Newcard extends React.Component {
        userid: this.props.useruid
      }
    }
+
+   
   setfront = (front) => {
       this.setState({Front: front.target.value})
   }

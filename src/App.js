@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
+import firebase from 'firebase';
 
 
 import Firebaselogin from './components/firebaselogin'
 
-
+import { cardrefresh } from './actions/userActions';
 
 import Menuicon from 'material-ui/svg-icons/navigation/menu';
 import Drawer from 'material-ui/Drawer';
@@ -29,6 +30,9 @@ class App extends Component {
 
     };
   }
+  componentDidMount(){
+    this.props.cardrefresh()
+  }
 
   openmenu = () => {
     this.setState({menuopen: true})
@@ -37,7 +41,14 @@ class App extends Component {
     this.setState({loginopen: true})
   }
   opennewcard = () => {
+    const user = firebase.auth().currentUser;
+    if (user !=null){
     this.setState({newcardopen: true})
+    }
+  }
+  signout = () => {
+    firebase.auth().signOut();
+ 
   }
 
   opensettings = () => {
@@ -46,6 +57,8 @@ class App extends Component {
   closelogin = () => {
     this.setState({loginopen: false, menuopen: false, newcardopen: false, settingsopen: false})
   }
+
+
   render() {
 
     return (
@@ -60,6 +73,7 @@ class App extends Component {
           <span className="filler"/>
           <RaisedButton label="New Card" onClick={this.opennewcard}  />
           <RaisedButton label="Login" onClick={this.openlogin}  />
+          <RaisedButton label="signout" onClick={this.signout}  />
         </div>
 
         <Dialog modal={false} open={this.state.loginopen} onRequestClose={this.closelogin} autoDetectWindowHeight={true}>
@@ -80,12 +94,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userid: state.user.userid
+        userid: state.user.userid,
+        cardlist: state.user
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-
+  cardrefresh: () => dispatch(cardrefresh())
 });
 
 
