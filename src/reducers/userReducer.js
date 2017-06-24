@@ -1,7 +1,7 @@
 const initialState = {
   userid: null,
-  category: "",
-  cardlist: []
+  cardlist: [],
+  nocards: "No Cards, Add Some"
 };
 
 
@@ -13,8 +13,11 @@ const user = (state = initialState, action) => {
       })
     case "SET_CARDS": 
         return Object.assign({}, state, {
-        cardlist: action.payload
+        cardlist: action.payload,
+        nocards: ""
       })
+    case "CLEAR_CARDS": 
+      return initialState
     default:
       return state;
   }

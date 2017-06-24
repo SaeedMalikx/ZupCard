@@ -11,12 +11,13 @@ class CardList extends React.Component {
   deletecard = (id) => {
     this.props.deletecard(id)
   }  
+  
   render() {
     return (
       <div>
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
-                <div>
+                <div key={index}>
                       <ul >
                         <li>
                         <div className='front'>{card.front}</div>
@@ -28,6 +29,7 @@ class CardList extends React.Component {
                     </ul>
                 </div>
             )}
+            <p>{this.props.nocards}</p>
         </div>
       </div>
     );
@@ -36,7 +38,8 @@ class CardList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        cardlist: state.user.cardlist
+        cardlist: state.user.cardlist,
+        nocards: state.user.nocards
     };
 }
 

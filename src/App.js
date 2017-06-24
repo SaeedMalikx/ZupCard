@@ -67,6 +67,7 @@ class App extends Component {
           <Menuicon onTouchTap={this.openmenu} />
           <Drawer open={this.state.menuopen} docked={false} onRequestChange={(menuopen) => this.setState({menuopen})}>
               <MenuItem >Categories</MenuItem>
+              
           </Drawer>
           <span className="filler"/>
           <h3>Category</h3>
@@ -95,7 +96,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         userid: state.user.userid,
-        cardlist: state.user
+        cardlist: state.user.cardlist
     };
 }
 

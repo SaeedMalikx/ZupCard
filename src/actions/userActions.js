@@ -45,7 +45,7 @@ export const addcard = ({front, back, userid}) => dispatch => {
 
 export const cardrefresh = () => dispatch => {
     firebase.auth().onAuthStateChanged(user => {
-        if (user != null) {
+        if (user) {
             firebase.database().ref('users').child(user.uid).child('cards').on('value', snap =>{
                 
                 if (snap.val()) {
@@ -59,6 +59,8 @@ export const cardrefresh = () => dispatch => {
                       })
                       dispatch({type: "SET_CARDS", payload: cardlist}, { allowMore: true })
                     }
+                } else {
+                    dispatch({type: "CLEAR_CARDS", payload: []})
                 } 
             });
         }
