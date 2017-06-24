@@ -1,5 +1,6 @@
 import React from 'react';
 import './cardlist.css'
+import Delete from 'material-ui/svg-icons/action/delete';
 
 import {connect} from 'react-redux';
 
@@ -25,7 +26,7 @@ class CardList extends React.Component {
                         <div className={this.props.frontcolor}>{card.front}</div>
                         <div className={this.props.backcolor}>
                             {card.back} 
-                            <button onClick={() => {this.deletecard(card.id)}}>X</button>
+                            <Delete className="deletebutton" onClick={() => {this.deletecard(card.id)}}>X</Delete>
                         </div>        
                         </li>      
                     </ul>
