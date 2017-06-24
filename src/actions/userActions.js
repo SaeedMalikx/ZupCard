@@ -85,8 +85,8 @@ export const setcardcolor = ({frontvalue, backvalue}) => dispatch => {
 }
 
 export const getcardcolor = () => dispatch => {
-    const user = firebase.auth().currentUser;
-    if (user != null) {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
         firebase.database().ref('users').child(user.uid).child('colors').on('value', snap =>{
                 
                 if (snap.val()) {
@@ -97,5 +97,7 @@ export const getcardcolor = () => dispatch => {
                     dispatch({type: "SET_CARDS_COLOR", payload: color})
                 } 
             });
-    }
+            }
+    })
+    
 }

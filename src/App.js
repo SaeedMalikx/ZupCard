@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Firebaselogin from './components/firebaselogin'
 
 
-import { cardrefresh } from './actions/userActions';
+import { cardrefresh, getcardcolor } from './actions/userActions';
 
 import ActionHome from 'material-ui/svg-icons/action/home';
 import SettingIcon from 'material-ui/svg-icons/action/settings';
@@ -38,6 +38,7 @@ class App extends Component {
   }
   componentDidMount(){
     this.props.cardrefresh()
+    this.props.getcardcolor()
   }
 
   opensettings = () => {
@@ -107,7 +108,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  cardrefresh: () => dispatch(cardrefresh())
+  cardrefresh: () => dispatch(cardrefresh()),
+  getcardcolor: () => dispatch(getcardcolor())
 });
 
 

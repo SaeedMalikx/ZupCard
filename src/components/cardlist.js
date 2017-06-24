@@ -8,9 +8,7 @@ import { deletecard } from '../actions/userActions';
 
 class CardList extends React.Component {
 
-  componentDidUpdate(){
-    console.log(this.props.frontcolor)
-  }
+  
 
   deletecard = (id) => {
     this.props.deletecard(id)

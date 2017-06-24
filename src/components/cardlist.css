@@ -72,3 +72,91 @@ li:hover .back {
 .back.blue{
     background-image: linear-gradient( 135deg, #ABDCFF 0%, #0396FF 100%);
 }
+
+.front.orange{
+    background-image: linear-gradient( 135deg, #FEB692 0%, #EA5455 100%);
+}
+
+.back.orange{
+    background-image: linear-gradient( 135deg, #FEB692 0%, #EA5455 100%);
+}
+
+.front.purple{
+    background-image: linear-gradient( 135deg, #CE9FFC 0%, #7367F0 100%);
+}
+
+.back.purple{
+    background-image: linear-gradient( 135deg, #CE9FFC 0%, #7367F0 100%);
+}
+.front.green{
+    background-image: linear-gradient( 135deg, #81FBB8 0%, #28C76F 100%);
+}
+
+.back.green{
+    background-image: linear-gradient( 135deg, #81FBB8 0%, #28C76F 100%);
+}
+.front.darkred{
+    background-image: linear-gradient( 135deg, #F05F57 0%, #360940 100%);
+}
+
+.back.darkred{
+    background-image: linear-gradient( 135deg, #F05F57 0%, #360940 100%);
+}
+
+.front.bluelagoon{
+    background-image: linear-gradient( 135deg, #43C6AC 0%, #191654 100%);
+}
+
+.back.bluelagoon{
+    background-image: linear-gradient( 135deg, #43C6AC 0%, #191654 100%);
+}
+.front.honeydew{
+    background-image: linear-gradient( 135deg, #43C6AC 0%, #F8FFAE 100%);
+}
+
+.back.honeydew{
+    background-image: linear-gradient( 135deg, #43C6AC 0%, #F8FFAE 100%);
+}
+.front.rosepink{
+    background-image: linear-gradient( 135deg, #FFAFBD 0%, #ffc3a0 100%);
+}
+
+.back.rosepink{
+    background-image: linear-gradient( 135deg, #FFAFBD 0%, #ffc3a0 100%);
+}
+.front.cottoncandy{
+    background-image: linear-gradient( 135deg, #3494E6 0%, #EC6EAD 100%);
+}
+
+.back.cottoncandy{
+    background-image: linear-gradient( 135deg, #3494E6 0%, #EC6EAD 100%);
+}
+.front.grey{
+    background-image: linear-gradient( 135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+
+.back.grey{
+    background-image: linear-gradient( 135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+.front.steelblue{
+    background-image: linear-gradient( 135deg, #000428 0%, #004e92 100%);
+}
+
+.back.steelblue{
+    background-image: linear-gradient( 135deg, #000428 0%, #004e92 100%);
+}
+.front.sherbat{
+    background-image: linear-gradient( 135deg, #f7ff00 0%, #db36a4 100%);
+}
+
+.back.sherbat{
+    background-image: linear-gradient( 135deg, #f7ff00 0%, #db36a4 100%);
+}
+.front.chocolate{
+    background-image: linear-gradient( 135deg, #1e130c 0%, #9a8478 100%);
+}
+
+.back.chocolate{
+    background-image: linear-gradient( 135deg, #1e130c 0%, #9a8478 100%);
+}
+
