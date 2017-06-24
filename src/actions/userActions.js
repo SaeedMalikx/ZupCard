@@ -73,3 +73,29 @@ export const deletecard = (id) => dispatch => {
         firebase.database().ref('users').child(user.uid).child('cards').child(id).remove()
     }
 }
+
+export const setcardcolor = ({frontvalue, backvalue}) => dispatch => {
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+        firebase.database().ref('users').child(user.uid).child('colors').set({
+            'frontcolor': frontvalue,
+            'backcolor': backvalue
+        }).then()
+    }
+}
+
+export const getcardcolor = () => dispatch => {
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+        firebase.database().ref('users').child(user.uid).child('colors').on('value', snap =>{
+                
+                if (snap.val()) {
+                    const color = {
+                        backcolor: snap.val().backcolor,
+                        frontcolor: snap.val().frontcolor
+                    }
+                    dispatch({type: "SET_CARDS_COLOR", payload: color})
+                } 
+            });
+    }
+}

@@ -8,6 +8,10 @@ import { deletecard } from '../actions/userActions';
 
 class CardList extends React.Component {
 
+  componentDidUpdate(){
+    console.log(this.props.frontcolor)
+  }
+
   deletecard = (id) => {
     this.props.deletecard(id)
   }  
@@ -20,8 +24,8 @@ class CardList extends React.Component {
                 <div key={index}>
                       <ul >
                         <li>
-                        <div className='front'>{card.front}</div>
-                        <div className='back'>
+                        <div className={this.props.frontcolor}>{card.front}</div>
+                        <div className={this.props.backcolor}>
                             {card.back} 
                             <button onClick={() => {this.deletecard(card.id)}}>X</button>
                         </div>        
@@ -31,7 +35,7 @@ class CardList extends React.Component {
             )}
             <p>{this.props.nocards}</p>
         </div>
-        
+
       </div>
     )
   }
@@ -40,7 +44,9 @@ class CardList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         cardlist: state.user.cardlist,
-        nocards: state.user.nocards
+        nocards: state.user.nocards,
+        frontcolor: state.user.frontcardcolor,
+        backcolor: state.user.backcardcolor
     }
 }
 

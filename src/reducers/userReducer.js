@@ -1,7 +1,9 @@
 const initialState = {
   userid: null,
   cardlist: [],
-  nocards: "No Cards, Add Some"
+  nocards: "No Cards, Add Some",
+  frontcardcolor: "front yellow",
+  backcardcolor: "back yellow"
 };
 
 
@@ -18,6 +20,11 @@ const user = (state = initialState, action) => {
       })
     case "CLEAR_CARDS": 
       return initialState
+    case "SET_CARDS_COLOR": 
+        return Object.assign({}, state, {
+          frontcardcolor: action.payload.frontcolor,
+          backcardcolor: action.payload.backcolor
+      })
     default:
       return state;
   }
