@@ -14,15 +14,17 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import SettingIcon from 'material-ui/svg-icons/action/settings';
 import Accountbox from 'material-ui/svg-icons/action/account-box';
 import Addbox from 'material-ui/svg-icons/content/add-box';
-import Menuicon from 'material-ui/svg-icons/navigation/menu';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import CardsIcon from 'material-ui/svg-icons/image/grid-on';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import {grey50, red500, blue500} from 'material-ui/styles/colors';
 
 
 import CardList from './components/cardlist';
 import NewCard from './components/newcard';
+import Settings from './components/settings';
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ class App extends Component {
 
     this.state = {
       newcardopen: false,
-      loginopen: false
+      opensettings: false
 
     };
   }
@@ -38,8 +40,8 @@ class App extends Component {
     this.props.cardrefresh()
   }
 
-  openlogin = () => {
-    this.setState({loginopen: true})
+  opensettings = () => {
+    this.setState({opensettings: true})
   }
 
   opennewcard = () => {
@@ -54,7 +56,7 @@ class App extends Component {
   }
 
   closecard = () => {
-    this.setState({loginopen: false, newcardopen: false})
+    this.setState({opensettings: false, newcardopen: false})
   }
 
 
@@ -64,19 +66,17 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div className="navbar">
-            <Link to="/"><ActionHome  /></Link>
-            <span className="filler"/>
-            <h3>ZAPCARD </h3>
-            <span className="filler"/>
-            <Link to="/cards">Cards</Link>
-            <Addbox onClick={this.opennewcard}  />
-            <Accountbox onClick={this.openlogin}/>
-            <Link to="/settings"><SettingIcon  /></Link>
+              <Link to="/"><ActionHome style={style.small} color={grey50} /></Link>
+              <span className="filler"/>
+              <h2>ZAPCARD </h2>
+              <span className="filler"/>
+              <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
+              <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
+              <SettingIcon style={style.small} color={grey50} onClick={this.opensettings}/>
           </div>
 
-          <Dialog modal={false} open={this.state.loginopen} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
-                <h3>Current User: {this.props.userid} </h3>
-                <RaisedButton label="signout" onClick={this.signout} fullWidth={true} secondary={true}/>
+          <Dialog modal={false} open={this.state.opensettings} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
+                <Settings/>
           </Dialog>
 
 
@@ -84,9 +84,13 @@ class App extends Component {
                   <NewCard closeloginform={this.closecard}/>
           </Dialog>
 
-
+          
+          <div className="addbutton">
+            <FloatingActionButton onClick={this.opennewcard} >
+              <ContentAdd />
+            </FloatingActionButton>
+          </div>
           <Route exact path={"/"} component={() => <Firebaselogin/>}/>
-          <Route exact path={"/settings"} component={() => <Firebaselogin/>}/>
           <Route exact path={"/cards"} component={() => <CardList/>}/>
         </div>
       </BrowserRouter>
@@ -107,4 +111,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+const style = {
+  small: {
+    width: 35,
+    height: 35,
+    padding: 10,
+  }
+};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

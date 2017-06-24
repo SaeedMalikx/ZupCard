@@ -1,6 +1,5 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
 
 import './firebaselogin.css'
@@ -46,29 +45,21 @@ class firebaselogin extends React.Component {
 
         return (
             <div className="logincenter">
-                <TextField
-                    hintText="Email"
-                    style={{width: '100%'}}
-                    onChange={this.setuser}
-                /><br />
-                <TextField
-                    hintText="Password"
-                    style={{width: '100%'}}
-                    onChange={this.setpass}
-                /><br />
-                <RaisedButton 
-                    label="Signin" 
-                    primary={true} 
-                    onClick={this.signinuser} 
-                    style={{width: '100%'}}
-                />
-                <h2>or Enter Email/Password Above and  Instantly Sign Up </h2>
-                <RaisedButton 
-                    label="Signup" 
-                    secondary={true} 
-                    onClick={this.createuser} 
-                    style={{width: '100%'}}
-                /><br/>
+                <div>
+                    <form >
+                        <h3>Email</h3>
+                        <input type="text" placeholder="Email" onChange={this.setuser}></input>
+
+                        <h3>Password</h3>
+                        <input type="text" placeholder="Password" onChange={this.setpass}></input>
+
+                        
+                    
+                        <Link to="/cards"><button className="button" onClick={this.signinuser} >Sign in</button></Link>
+                        <h3>Enter Email/Password Above and SignUp Instantly</h3>
+                        <Link to="/cards"><button className="buttonsignup" onClick={this.createuser} >Sign Up</button></Link>
+                    </form>
+                </div>
             </div>            
         )
     }
@@ -87,3 +78,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(firebaselogin);
+

@@ -31,8 +31,9 @@ class CardList extends React.Component {
             )}
             <p>{this.props.nocards}</p>
         </div>
+        
       </div>
-    );
+    )
   }
 }
 
@@ -40,12 +41,12 @@ const mapStateToProps = (state) => {
     return {
         cardlist: state.user.cardlist,
         nocards: state.user.nocards
-    };
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
   deletecard: id => dispatch(deletecard(id))
-});
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardList);
