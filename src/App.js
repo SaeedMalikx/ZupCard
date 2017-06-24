@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
 import firebase from 'firebase';
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 
 import Firebaselogin from './components/firebaselogin'
 
+
 import { cardrefresh } from './actions/userActions';
 
+import ActionHome from 'material-ui/svg-icons/action/home';
+import SettingIcon from 'material-ui/svg-icons/action/settings';
+import Accountbox from 'material-ui/svg-icons/action/account-box';
+import Addbox from 'material-ui/svg-icons/content/add-box';
 import Menuicon from 'material-ui/svg-icons/navigation/menu';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -23,10 +29,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      menuopen: false,
-      loginopen: false,
       newcardopen: false,
-      settingsopen: false
+      loginopen: false
 
     };
   }
@@ -34,12 +38,10 @@ class App extends Component {
     this.props.cardrefresh()
   }
 
-  openmenu = () => {
-    this.setState({menuopen: true})
-  }
   openlogin = () => {
     this.setState({loginopen: true})
   }
+
   opennewcard = () => {
     const user = firebase.auth().currentUser;
     if (user !=null){
@@ -51,42 +53,43 @@ class App extends Component {
  
   }
 
-  opensettings = () => {
-    this.setState({settingsopen: true})
-  }
-  closelogin = () => {
-    this.setState({loginopen: false, menuopen: false, newcardopen: false, settingsopen: false})
+  closecard = () => {
+    this.setState({loginopen: false, newcardopen: false})
   }
 
 
   render() {
 
     return (
-      <div className="App">
-        <div className="navbar">
-          <Menuicon onTouchTap={this.openmenu} />
-          <Drawer open={this.state.menuopen} docked={false} onRequestChange={(menuopen) => this.setState({menuopen})}>
-              <MenuItem >Categories</MenuItem>
-              
-          </Drawer>
-          <span className="filler"/>
-          <h3>Category</h3>
-          <span className="filler"/>
-          <RaisedButton label="New Card" onClick={this.opennewcard}  />
-          <RaisedButton label="Login" onClick={this.openlogin}  />
-          <RaisedButton label="signout" onClick={this.signout}  />
+      <BrowserRouter>
+        <div className="App">
+          <div className="navbar">
+            <Link to="/"><ActionHome  /></Link>
+            <span className="filler"/>
+            <h3>ZAPCARD </h3>
+            <span className="filler"/>
+            <Link to="/cards">Cards</Link>
+            <Addbox onClick={this.opennewcard}  />
+            <Accountbox onClick={this.openlogin}/>
+            <Link to="/settings"><SettingIcon  /></Link>
+          </div>
+
+          <Dialog modal={false} open={this.state.loginopen} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
+                <h3>Current User: {this.props.userid} </h3>
+                <RaisedButton label="signout" onClick={this.signout} fullWidth={true} secondary={true}/>
+          </Dialog>
+
+
+          <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
+                  <NewCard closeloginform={this.closecard}/>
+          </Dialog>
+
+
+          <Route exact path={"/"} component={() => <Firebaselogin/>}/>
+          <Route exact path={"/settings"} component={() => <Firebaselogin/>}/>
+          <Route exact path={"/cards"} component={() => <CardList/>}/>
         </div>
-
-        <Dialog modal={false} open={this.state.loginopen} onRequestClose={this.closelogin} autoDetectWindowHeight={true}>
-                <Firebaselogin closeloginform={this.closelogin}/>
-        </Dialog>
-
-        <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closelogin} autoDetectWindowHeight={true}>
-                <NewCard closeloginform={this.closelogin}/>
-        </Dialog>
-
-        <CardList/>
-      </div>
+      </BrowserRouter>
     );
   }
 }
@@ -96,7 +99,6 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         userid: state.user.userid,
-        cardlist: state.user.cardlist
     };
 }
 

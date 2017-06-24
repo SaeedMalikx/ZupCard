@@ -3,6 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux';
 
+import './firebaselogin.css'
+
 import { signin, signup } from '../actions/userActions';
 
 
@@ -15,9 +17,6 @@ class firebaselogin extends React.Component {
        password: ""
      };
    }
-  closelogin = () => {
-      this.props.closeloginform();
-  }
   setuser = (user) => {
       this.setState({email: user.target.value})
   }
@@ -31,7 +30,6 @@ class firebaselogin extends React.Component {
           password: this.state.password
       }
       this.props.signup(user)
-      this.closelogin()
   }
 
   signinuser = () => {
@@ -40,7 +38,6 @@ class firebaselogin extends React.Component {
           password: this.state.password
       }
       this.props.signin(user)
-      this.closelogin()
   }
   
 
