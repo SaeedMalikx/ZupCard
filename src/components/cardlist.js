@@ -21,7 +21,7 @@ class CardList extends React.Component {
             {this.props.cardlist.map((card, index) =>
                 <div key={index}>
                       <ul >
-                        <li>
+                        <li className={this.props.cardsize}>
                         <div className={this.props.frontcolor}>{card.front}</div>
                         <div className={this.props.backcolor}>
                             {card.back} 
@@ -44,7 +44,8 @@ const mapStateToProps = (state) => {
         cardlist: state.user.cardlist,
         nocards: state.user.nocards,
         frontcolor: state.user.frontcardcolor,
-        backcolor: state.user.backcardcolor
+        backcolor: state.user.backcardcolor,
+        cardsize: state.user.size
     }
 }
 

@@ -3,7 +3,7 @@ import './settings.css'
 
 import {connect} from 'react-redux';
 
-import { setcardcolor, getcardcolor } from '../actions/userActions';
+import { setcardcolor, getcardcolor, changecardsize } from '../actions/userActions';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,7 +15,8 @@ class Settings extends React.Component {
  
      this.state = {
        frontvalue: "front yellow",
-       backvalue: "back yellow"
+       backvalue: "back yellow",
+       size: "medium"
      };
    }
 
@@ -23,9 +24,14 @@ class Settings extends React.Component {
 
   handleChangeback = (event, index, value) => this.setState({backvalue: value});
 
+  handleChangesize = (event, index, value) => this.setState({size: value});
+
   
 
-
+  changesize = () => {
+      const size = this.state.size
+      this.props.changecardsize(size)
+  }
   setcardcolor = () => {
       const colorvalue = {
           frontvalue: this.state.frontvalue,
@@ -78,6 +84,15 @@ class Settings extends React.Component {
           <MenuItem value={"back sherbat"} primaryText="Sherbet" onClick={this.setcardcolor} />
           <MenuItem value={"back chocolate"} primaryText="Chocolate" onClick={this.setcardcolor} />
         </SelectField>
+        <SelectField
+          floatingLabelText="Cardsize"
+          value={this.state.size}
+          onChange={this.handleChangesize}
+        >
+          <MenuItem value={"small"} primaryText="Small" onClick={this.changesize}/>
+          <MenuItem value={"medium"} primaryText="Medium" onClick={this.changesize}/>
+          <MenuItem value={"large"} primaryText="Large" onClick={this.changesize}/>
+        </SelectField>
         
       </div>
     )
@@ -94,7 +109,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     setcardcolor: colorvalue => dispatch(setcardcolor(colorvalue)),
-    getcardcolor: () => dispatch(getcardcolor())
+    getcardcolor: () => dispatch(getcardcolor()),
+    changecardsize: size => dispatch (changecardsize(size))
 })
 
 

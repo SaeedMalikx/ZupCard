@@ -101,3 +101,7 @@ export const getcardcolor = () => dispatch => {
     })
     
 }
+
+export const changecardsize = (size) => dispatch =>{
+    dispatch({type: "SET_SIZE", payload: size})
+}
