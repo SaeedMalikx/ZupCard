@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
 import firebase from 'firebase';
-import { BrowserRouter, Route, Link, NavLink } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 
 import Firebaselogin from './components/firebaselogin'
@@ -46,10 +46,6 @@ class App extends Component {
     this.setState({newcardopen: true})
     }
   }
-  signout = () => {
-    firebase.auth().signOut();
- 
-  }
 
   closecard = () => {
     this.setState({opensettings: false, newcardopen: false})
@@ -63,12 +59,11 @@ class App extends Component {
         <div className="App">
           <div className="navbar">
               <span className="filler"/>
-              <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
+              <span className="title">ZAPCARD </span>
               <span className="filler"/>
               <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
               <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
               <SettingIcon style={style.small} color={grey50} onClick={this.opensettings}/>
-              <span onClick={this.signout}>signout</span>
           </div>
 
           <Dialog modal={false} open={this.state.opensettings} onRequestClose={this.closecard} autoDetectWindowHeight={true}>

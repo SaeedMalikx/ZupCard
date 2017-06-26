@@ -1,6 +1,8 @@
 import React from 'react';
 import './settings.css'
 
+import { Link } from 'react-router-dom'
+
 import {connect} from 'react-redux';
 
 import firebase from 'firebase';
@@ -59,7 +61,7 @@ class Settings extends React.Component {
           <MenuItem value={"large"} primaryText="Large" onClick={this.changesize}/>
         </SelectField>
         <SelectField
-          floatingLabelText="Cardsize"
+          floatingLabelText="FontColor"
           value={this.state.fontcolor}
           onChange={this.handleColorchange}
         >
@@ -67,6 +69,7 @@ class Settings extends React.Component {
           <MenuItem value={"black"} primaryText="black" onClick={this.setfontcolor}/>
           <MenuItem value={"red"} primaryText="red" onClick={this.setfontcolor}/>
         </SelectField>
+        <Link to="/"><button className="buttonsignup" onClick={this.signout} >Sign Out</button></Link>
         
       </div>
     )

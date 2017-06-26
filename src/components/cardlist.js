@@ -32,7 +32,7 @@ class CardList extends React.Component {
                     </ul>
                 </div>
             )}
-            <p>{this.props.nocards}</p>
+            <p className="white">{this.props.nocards}</p>
         </div>
 
       </div>
