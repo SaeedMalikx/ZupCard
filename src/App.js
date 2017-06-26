@@ -2,23 +2,18 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
 import firebase from 'firebase';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, NavLink } from 'react-router-dom'
 
 
 import Firebaselogin from './components/firebaselogin'
 
 
-import { cardrefresh, getcardcolor } from './actions/userActions';
+import { cardrefresh, getfontcolor } from './actions/userActions';
 
-import ActionHome from 'material-ui/svg-icons/action/home';
 import SettingIcon from 'material-ui/svg-icons/action/settings';
-import Accountbox from 'material-ui/svg-icons/action/account-box';
 import Addbox from 'material-ui/svg-icons/content/add-box';
 import CardsIcon from 'material-ui/svg-icons/image/grid-on';
-import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import {grey50, red500, blue500} from 'material-ui/styles/colors';
 
 
@@ -38,7 +33,7 @@ class App extends Component {
   }
   componentDidMount(){
     this.props.cardrefresh()
-    this.props.getcardcolor()
+    this.props.getfontcolor()
   }
 
   opensettings = () => {
@@ -67,13 +62,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div className="navbar">
-              <Link to="/"><ActionHome style={style.small} color={grey50} /></Link>
               <span className="filler"/>
-              <h2>ZAPCARD </h2>
+              <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
               <span className="filler"/>
               <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
               <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
               <SettingIcon style={style.small} color={grey50} onClick={this.opensettings}/>
+              <span onClick={this.signout}>signout</span>
           </div>
 
           <Dialog modal={false} open={this.state.opensettings} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
@@ -84,13 +79,7 @@ class App extends Component {
           <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
                   <NewCard closeloginform={this.closecard}/>
           </Dialog>
-
           
-          <div className="addbutton">
-            <FloatingActionButton onClick={this.opennewcard} >
-              <ContentAdd />
-            </FloatingActionButton>
-          </div>
           <Route exact path={"/"} component={() => <Firebaselogin/>}/>
           <Route exact path={"/cards"} component={() => <CardList/>}/>
         </div>
@@ -109,7 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   cardrefresh: () => dispatch(cardrefresh()),
-  getcardcolor: () => dispatch(getcardcolor())
+  getfontcolor: () => dispatch(getfontcolor())
 });
 
 

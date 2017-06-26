@@ -2,9 +2,8 @@ const initialState = {
   userid: null,
   cardlist: [],
   nocards: "No Cards, Add Some",
-  frontcardcolor: "front yellow",
-  backcardcolor: "back yellow",
-  size: "medium"
+  size: "medium",
+  fontcolor: "white"
 };
 
 
@@ -21,10 +20,9 @@ const user = (state = initialState, action) => {
       })
     case "CLEAR_CARDS": 
       return initialState
-    case "SET_CARDS_COLOR": 
+    case "SET_CARDS_FONTCOLOR": 
         return Object.assign({}, state, {
-          frontcardcolor: action.payload.frontcolor,
-          backcardcolor: action.payload.backcolor
+          fontcolor: action.payload.fontcolor
       })
     case "SET_SIZE": 
         return Object.assign({}, state, {

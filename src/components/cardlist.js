@@ -21,10 +21,10 @@ class CardList extends React.Component {
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
                 <div key={index}>
-                      <ul >
+                      <ul className={this.props.fontcolor}>
                         <li className={this.props.cardsize}>
-                        <div className={this.props.frontcolor}>{card.front}</div>
-                        <div className={this.props.backcolor}>
+                        <div className={card.frontcolor}>{card.front}</div>
+                        <div className={card.backcolor}>
                             {card.back} 
                             <Delete className="deletebutton" onClick={() => {this.deletecard(card.id)}}>X</Delete>
                         </div>        
@@ -44,9 +44,8 @@ const mapStateToProps = (state) => {
     return {
         cardlist: state.user.cardlist,
         nocards: state.user.nocards,
-        frontcolor: state.user.frontcardcolor,
-        backcolor: state.user.backcardcolor,
-        cardsize: state.user.size
+        cardsize: state.user.size,
+        fontcolor: state.user.fontcolor
     }
 }
 

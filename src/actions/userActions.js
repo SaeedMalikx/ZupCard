@@ -34,12 +34,14 @@ export const signin = ({email, password}) => dispatch => {
       });
 };
 
-export const addcard = ({front, back, userid}) => dispatch => {
+export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatch => {
     const user = firebase.auth().currentUser;
     if (user != null) {
     firebase.database().ref('users').child(user.uid).child('cards').push({
         'front': front,
-        'back': back
+        'back': back,
+        'frontcolor': frontcolor,
+        'backcolor': backcolor
     })}
 }
 
@@ -55,7 +57,9 @@ export const cardrefresh = () => dispatch => {
                       cardlist.push({
                         id: card,
                         front: fcards[card].front,
-                        back: fcards[card].back
+                        back: fcards[card].back,
+                        frontcolor: fcards[card].frontcolor,
+                        backcolor: fcards[card].backcolor
                       })
                       dispatch({type: "SET_CARDS", payload: cardlist}, { allowMore: true })
                     }
@@ -63,6 +67,8 @@ export const cardrefresh = () => dispatch => {
                     dispatch({type: "CLEAR_CARDS", payload: []})
                 } 
             });
+        } else {
+            dispatch({type: "CLEAR_CARDS", payload: []})
         }
     })
 }
@@ -74,27 +80,26 @@ export const deletecard = (id) => dispatch => {
     }
 }
 
-export const setcardcolor = ({frontvalue, backvalue}) => dispatch => {
+export const setfontcolor = ({fontcolor}) => dispatch => {
     const user = firebase.auth().currentUser;
     if (user != null) {
         firebase.database().ref('users').child(user.uid).child('colors').set({
-            'frontcolor': frontvalue,
-            'backcolor': backvalue
+            'fontcolor': fontcolor
         }).then()
     }
 }
 
-export const getcardcolor = () => dispatch => {
+export const getfontcolor = () => dispatch => {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
         firebase.database().ref('users').child(user.uid).child('colors').on('value', snap =>{
                 
                 if (snap.val()) {
                     const color = {
-                        backcolor: snap.val().backcolor,
-                        frontcolor: snap.val().frontcolor
+                        
+                        fontcolor: snap.val().fontcolor
                     }
-                    dispatch({type: "SET_CARDS_COLOR", payload: color})
+                    dispatch({type: "SET_CARDS_FONTCOLOR", payload: color})
                 } 
             });
             }
