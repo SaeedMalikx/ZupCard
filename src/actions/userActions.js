@@ -41,7 +41,8 @@ export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatc
         'front': front,
         'back': back,
         'frontcolor': frontcolor,
-        'backcolor': backcolor
+        'backcolor': backcolor,
+        'border': "cardborder" 
     })}
 }
 
@@ -61,7 +62,8 @@ export const cardrefresh = () => dispatch => {
                         front: fcards[card].front,
                         back: fcards[card].back,
                         frontcolor: fcards[card].frontcolor,
-                        backcolor: fcards[card].backcolor
+                        backcolor: fcards[card].backcolor,
+                        border: fcards[card].border
                       })
                       dispatch({type: "SET_CARDS", payload: cardlist}, { allowMore: true })
                     }
@@ -111,4 +113,14 @@ export const getfontcolor = () => dispatch => {
 
 export const changecardsize = (size) => dispatch =>{
     dispatch({type: "SET_SIZE", payload: size})
+}
+
+
+export const setborder = ({newborder, cardid}) => dispatch => {
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+        firebase.database().ref('users').child(user.uid).child('cards').child(cardid).update({
+            'border': newborder
+        }).then()
+    }
 }
