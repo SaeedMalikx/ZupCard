@@ -3,7 +3,8 @@ const initialState = {
   cardlist: [],
   nocards: "No Cards, Add Some",
   size: "medium",
-  fontcolor: "white"
+  fontcolor: "white",
+  isloggedin: false
 };
 
 
@@ -27,6 +28,11 @@ const user = (state = initialState, action) => {
     case "SET_SIZE": 
         return Object.assign({}, state, {
         size: action.payload,
+        
+      })
+    case "SET_ISLOGGEDIN":
+      return Object.assign({}, state, {
+        isloggedin: action.payload,
         
       })
     default:

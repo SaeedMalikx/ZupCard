@@ -20,7 +20,7 @@ class CardList extends React.Component {
       <div>
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
-                <div key={index}>
+                <div key={index} className="borderred">
                       <ul className={this.props.fontcolor}>
                         <li className={this.props.cardsize}>
                         <div className={card.frontcolor}>{card.front}</div>

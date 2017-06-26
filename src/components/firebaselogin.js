@@ -38,14 +38,19 @@ class firebaselogin extends React.Component {
       }
       this.props.signin(user)
   }
+
+  
   
 
 
   render() {
-
-        return (
+        return ( 
+            
             <div className="logincenter">
-                <div>
+                { this.props.isloggedin ? (
+                
+                <Link to="/cards"><button className="button" >View My Cards</button></Link> 
+                ) : (<div>
                     <form >
                         <h3>Email</h3>
                         <input type="text" placeholder="Email" onChange={this.setuser}></input>
@@ -55,12 +60,14 @@ class firebaselogin extends React.Component {
 
                         
                     
-                        <Link to="/cards"><button className="button" onClick={this.signinuser} >Sign in</button></Link>
+                        <Link to="/"><button className="button" onClick={this.signinuser} >Sign in</button></Link>
                         <h3>Enter Email/Password Above and SignUp Instantly</h3>
-                        <Link to="/cards"><button className="buttonsignup" onClick={this.createuser} >Sign Up</button></Link>
+                        <Link to="/"><button className="buttonsignup" onClick={this.createuser} >Sign Up</button></Link>
+                        
                     </form>
-                </div>
-            </div>            
+                </div> )}
+            </div>
+            
         )
     }
 }
@@ -69,6 +76,7 @@ class firebaselogin extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        isloggedin: state.user.isloggedin
     };
 }
 

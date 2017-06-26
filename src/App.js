@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
 import firebase from 'firebase';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Redirect, NavLink } from 'react-router-dom'
 
 
 import Firebaselogin from './components/firebaselogin'
@@ -37,7 +37,10 @@ class App extends Component {
   }
 
   opensettings = () => {
+    const user = firebase.auth().currentUser;
+    if (user !=null){
     this.setState({opensettings: true})
+    }
   }
 
   opennewcard = () => {
@@ -53,13 +56,12 @@ class App extends Component {
 
 
   render() {
-
     return (
       <BrowserRouter>
         <div className="App">
           <div className="navbar">
               <span className="filler"/>
-              <span className="title">ZAPCARD </span>
+              <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
               <span className="filler"/>
               <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
               <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
@@ -76,7 +78,7 @@ class App extends Component {
           </Dialog>
           
           <Route exact path={"/"} component={() => <Firebaselogin/>}/>
-          <Route exact path={"/cards"} component={() => <CardList/>}/>
+          <Route exact path={"/cards"} render={() => (this.props.isloggedin ? ( <CardList/>) : (<Redirect to="/"/>))}/>
         </div>
       </BrowserRouter>
     );
@@ -88,6 +90,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         userid: state.user.userid,
+        isloggedin: state.user.isloggedin
     };
 }
 

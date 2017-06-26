@@ -52,6 +52,7 @@ class Settings extends React.Component {
     return (
       <div>
         <SelectField
+          fullWidth={true}
           floatingLabelText="Cardsize"
           value={this.state.size}
           onChange={this.handleChangesize}
@@ -61,6 +62,7 @@ class Settings extends React.Component {
           <MenuItem value={"large"} primaryText="Large" onClick={this.changesize}/>
         </SelectField>
         <SelectField
+          fullWidth={true}
           floatingLabelText="FontColor"
           value={this.state.fontcolor}
           onChange={this.handleColorchange}
@@ -69,6 +71,7 @@ class Settings extends React.Component {
           <MenuItem value={"black"} primaryText="black" onClick={this.setfontcolor}/>
           <MenuItem value={"red"} primaryText="red" onClick={this.setfontcolor}/>
         </SelectField>
+        <p className="centertext">OR</p>
         <Link to="/"><button className="buttonsignup" onClick={this.signout} >Sign Out</button></Link>
         
       </div>

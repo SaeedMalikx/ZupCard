@@ -14,7 +14,7 @@ export const signup = ({email, password}) => dispatch => {
             }})
       .then(user => {
           if(user!= null){
-        dispatch({type: "CREATE_USER", payload: user.uid})}
+        dispatch({type: "SET_ISLOGGEDIN", payload: true})}
       });
 };
 
@@ -30,7 +30,7 @@ export const signin = ({email, password}) => dispatch => {
             }})
     .then(user => {
           if(user!= null){
-        dispatch({type: "CREATE_USER", payload: user.uid})}
+        dispatch({type: "SET_ISLOGGEDIN", payload: true})}
       });
 };
 
@@ -48,6 +48,8 @@ export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatc
 export const cardrefresh = () => dispatch => {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
+            dispatch({type: "SET_ISLOGGEDIN", payload: true})
+            
             firebase.database().ref('users').child(user.uid).child('cards').on('value', snap =>{
                 
                 if (snap.val()) {

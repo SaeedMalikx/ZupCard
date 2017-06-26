@@ -49,11 +49,10 @@ class Newcard extends React.Component {
   render() {
     return (
       <div>
-        <div>
-            <TextField hintText="FRONT" fullWidth={true} onChange={this.setfront} />
-            <p>Front Color</p>
+        <div className="centertext">
+            <input type="text" placeholder="Front" onChange={this.setfront}></input>
+            <p >Front Color</p>
             <SelectField
-            floatingLabelText="FrontColor"
             value={this.state.frontcolor}
             onChange={this.handleChange}
             >
@@ -72,9 +71,9 @@ class Newcard extends React.Component {
                 <MenuItem value={"front sherbat"} primaryText="Sherbet"  />
                 <MenuItem value={"front chocolate"} primaryText="Chocolate"  />
             </SelectField>
-            <TextField hintText="BACK" fullWidth={true} onChange={this.setbackside}/>
+            <input type="text" placeholder="Back" onChange={this.setbackside}></input>
+            <p >Back Color</p>
             <SelectField
-                floatingLabelText="BackColor"
                 value={this.state.backcolor}
                 onChange={this.handleChangeback}
             >
@@ -110,5 +109,12 @@ const mapDispatchToProps = dispatch => ({
     addcard: newcard => dispatch(addcard(newcard)),
 
 });
+
+
+const styles = {
+  customWidth: {
+    width: 300,
+  },
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Newcard);

@@ -11,6 +11,11 @@
     right: 0;
 }
 
+.bordered{
+    border-style: solid;
+    border-color: #ff0000;
+}
+
 ul {
     perspective: 600;
 }
@@ -20,6 +25,9 @@ ul {
 }
 .black {
     color: black;
+}
+.red {
+    color: red;
 }
 .small {
     width: 250px;
