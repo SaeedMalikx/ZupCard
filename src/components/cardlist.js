@@ -43,7 +43,7 @@ class CardList extends React.Component {
       <div>
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
-                <div className="fontsize1" key={index}>
+                <div key={index}>
                       <ul className={this.props.fontcolor}>
                         <div className={this.props.cardsize}>
                           <div className="cardcon">

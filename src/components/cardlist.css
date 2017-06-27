@@ -81,9 +81,11 @@ ul {
 .front {
     z-index: 3;
     text-align: center;
+    font-size: 25px;
 }
 .back {
     text-align: center;
+    font-size: 25px;
     transform: rotateY(180deg);
 }
 
@@ -207,7 +209,17 @@ ul {
     }
 }
 
-
-.fontsize1 {
-    font-size: 20px;
+@media only screen and (max-width: 320px) {
+    .small {
+        width: 200px;
+        height: 100px;
+    }
+    .medium {
+        width: 250px;
+        height: 150px;
+    }
+    .large {
+        width: 250px;
+        height: 200px;
+    }
 }
