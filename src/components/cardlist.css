@@ -61,6 +61,8 @@ ul {
     position: relative;
 }
 .cardcon div {
+    word-wrap: break-word;
+    overflow-y: hidden;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -79,11 +81,9 @@ ul {
 .front {
     z-index: 3;
     text-align: center;
-    font-size: 30px;
 }
 .back {
     text-align: center;
-    font-size: 30px;
     transform: rotateY(180deg);
 }
 
@@ -192,3 +192,22 @@ ul {
     background-image: linear-gradient( 135deg, #1e130c 0%, #9a8478 100%);
 }
 
+@media only screen and (max-width: 500px) {
+    .small {
+        width: 200px;
+        height: 100px;
+    }
+    .medium {
+        width: 250px;
+        height: 150px;
+    }
+    .large {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+
+.fontsize1 {
+    font-size: 20px;
+}

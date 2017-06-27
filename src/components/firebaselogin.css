@@ -2,7 +2,6 @@
     width: 60%;
     margin: 10vh auto;
     padding: 20px;
-    text-align: center;
 }
 
 input[type=text]{
@@ -42,3 +41,4 @@ input[type=text]{
 h3{
     color: white;
 }
+

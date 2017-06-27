@@ -1,8 +1,6 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -22,6 +20,9 @@ class Newcard extends React.Component {
      }
    }
 
+  resetstate = () => {
+      this.setState({Front: "", Back: ""})
+  }
    
   setfront = (front) => {
       this.setState({Front: front.target.value})
@@ -43,15 +44,17 @@ class Newcard extends React.Component {
         frontcolor: this.state.frontcolor,
         backcolor: this.state.backcolor
       }
+      this.resetstate()
       this.props.addcard(newcard)
+      this.resetstate()
   }
 
   render() {
     return (
       <div>
         <div className="centertext">
-            <input type="text" placeholder="Front" onChange={this.setfront}></input>
-            <p >Front Color</p>
+            <input type="text" placeholder="Front" onChange={this.setfront} value={this.state.Front}></input>
+            <p>Front Color</p>
             <SelectField
             value={this.state.frontcolor}
             onChange={this.handleChange}
@@ -71,9 +74,10 @@ class Newcard extends React.Component {
                 <MenuItem value={"front sherbat"} primaryText="Sherbet"  />
                 <MenuItem value={"front chocolate"} primaryText="Chocolate"  />
             </SelectField>
-            <input type="text" placeholder="Back" onChange={this.setbackside}></input>
+            <input type="text" placeholder="Back" onChange={this.setbackside} value={this.state.Back}></input>
             <p >Back Color</p>
             <SelectField
+            listStyle={{color: 'white'}}
                 value={this.state.backcolor}
                 onChange={this.handleChangeback}
             >
@@ -92,7 +96,7 @@ class Newcard extends React.Component {
                 <MenuItem value={"back sherbat"} primaryText="Sherbet"  />
                 <MenuItem value={"back chocolate"} primaryText="Chocolate"  />
             </SelectField>
-            <RaisedButton label="Add Card" primary={true} fullWidth={true} onClick={this.addcardlocal} />
+            <button className="button" onClick={this.addcardlocal} >Add Card</button>
         </div>
       </div>
     );
@@ -111,10 +115,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const styles = {
-  customWidth: {
-    width: 300,
-  },
-};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Newcard);

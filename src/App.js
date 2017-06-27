@@ -60,12 +60,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div className="navbar">
-              <span className="filler"/>
-              <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
-              <span className="filler"/>
-              <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
-              <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
-              <SettingIcon style={style.small} color={grey50} onClick={this.opensettings}/>
+              <div className="navcontainer">
+                <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
+                <span className="filler"/>
+                <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
+                <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />
+                <SettingIcon style={style.small} color={grey50} onClick={this.opensettings}/>
+              </div>
           </div>
 
           <Dialog modal={false} open={this.state.opensettings} onRequestClose={this.closecard} autoDetectWindowHeight={true}>

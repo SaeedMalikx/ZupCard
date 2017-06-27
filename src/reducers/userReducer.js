@@ -10,7 +10,7 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch(action.type) {
-    case "CREATE_USER": 
+    case "SET_USERINFO": 
         return Object.assign({}, state, {
         userid: action.payload
       })

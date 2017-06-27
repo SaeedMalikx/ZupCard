@@ -25,3 +25,27 @@
 .selected {
  text-decoration: none;
 }
+
+.dialogbody{
+  background: #212121;
+}
+
+.navcontainer {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  align-items: center;
+}
+
+
+@media only screen and (max-width: 350px) {
+    .title{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .navcontainer {
+        width: 100%;
+    }
+}

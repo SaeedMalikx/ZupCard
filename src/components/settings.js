@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 
 import firebase from 'firebase';
 
-import { changecardsize, getfontcolor, setfontcolor } from '../actions/userActions';
+import { changecardsize, getfontcolor, setfontcolor} from '../actions/userActions';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';

@@ -13,7 +13,7 @@ class CardList extends React.Component {
      super(props);
  
      this.state = {
-       border: "cardborder"
+       border: "cardborder",
      }
    } 
 
@@ -43,18 +43,18 @@ class CardList extends React.Component {
       <div>
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
-                <div key={index} className="borderred">
+                <div className="fontsize1" key={index}>
                       <ul className={this.props.fontcolor}>
                         <div className={this.props.cardsize}>
                           <div className="cardcon">
-                            <div className={card.border}>
-                              <div className={card.frontcolor}>{card.front}</div>
-                              <div className={card.backcolor}>
-                                  {card.back} 
-                                  <Star className="markbutton" onClick={() => {this.setborder(card.id)}}></Star>
-                                  <Delete className="deletebutton" onClick={() => {this.deletecard(card.id)}}></Delete>
-                              </div>     
-                            </div>   
+                              <div className={card.border}>
+                                <div className={card.frontcolor}>{card.front}</div>
+                                <div className={card.backcolor}>
+                                    {card.back} 
+                                    <Star className="markbutton" onClick={() => {this.setborder(card.id)}}></Star>
+                                    <Delete className="deletebutton" onClick={() => {this.deletecard(card.id)}}></Delete>
+                                </div>     
+                              </div>   
                           </div> 
                         </div>     
                     </ul>

@@ -14,7 +14,8 @@ export const signup = ({email, password}) => dispatch => {
             }})
       .then(user => {
           if(user!= null){
-        dispatch({type: "SET_ISLOGGEDIN", payload: true})}
+        dispatch({type: "SET_ISLOGGEDIN", payload: true})
+        dispatch({type: "SET_USERINFO", payload: user.email})}
       });
 };
 
@@ -30,7 +31,8 @@ export const signin = ({email, password}) => dispatch => {
             }})
     .then(user => {
           if(user!= null){
-        dispatch({type: "SET_ISLOGGEDIN", payload: true})}
+        dispatch({type: "SET_ISLOGGEDIN", payload: true})
+        dispatch({type: "SET_USERINFO", payload: user.email})}
       });
 };
 
@@ -50,6 +52,7 @@ export const cardrefresh = () => dispatch => {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             dispatch({type: "SET_ISLOGGEDIN", payload: true})
+            dispatch({type: "SET_USERINFO", payload: user.email})
             
             firebase.database().ref('users').child(user.uid).child('cards').on('value', snap =>{
                 
@@ -124,3 +127,4 @@ export const setborder = ({newborder, cardid}) => dispatch => {
         }).then()
     }
 }
+
