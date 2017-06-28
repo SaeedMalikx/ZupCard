@@ -20,7 +20,10 @@ const user = (state = initialState, action) => {
         nocards: ""
       })
     case "CLEAR_CARDS": 
-      return initialState
+      return Object.assign({}, state, {
+        cardlist: [],
+        nocards: " No Cards, Add Some"
+      })
     case "SET_CARDS_FONTCOLOR": 
         return Object.assign({}, state, {
           fontcolor: action.payload.fontcolor

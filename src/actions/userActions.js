@@ -50,7 +50,7 @@ export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatc
 
 export const cardrefresh = () => dispatch => {
     firebase.auth().onAuthStateChanged(user => {
-        if (user) {
+        if (user != null) {
             dispatch({type: "SET_ISLOGGEDIN", payload: true})
             dispatch({type: "SET_USERINFO", payload: user.email})
             
@@ -68,7 +68,7 @@ export const cardrefresh = () => dispatch => {
                         backcolor: fcards[card].backcolor,
                         border: fcards[card].border
                       })
-                      dispatch({type: "SET_CARDS", payload: cardlist}, { allowMore: true })
+                      dispatch({type: "SET_CARDS", payload: cardlist})
                     }
                 } else {
                     dispatch({type: "CLEAR_CARDS", payload: []})
