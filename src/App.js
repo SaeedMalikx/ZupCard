@@ -74,7 +74,7 @@ class App extends Component {
           </Dialog>
 
 
-          <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closecard} autoDetectWindowHeight={true}>
+          <Dialog modal={false} open={this.state.newcardopen} onRequestClose={this.closecard} autoScrollBodyContent={true}  >
                   <NewCard closeloginform={this.closecard}/>
           </Dialog>
           

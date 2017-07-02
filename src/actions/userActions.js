@@ -76,6 +76,7 @@ export const cardrefresh = () => dispatch => {
             });
         } else {
             dispatch({type: "CLEAR_CARDS", payload: []})
+            dispatch({type: "SET_ISLOGGEDIN", payload: false})
         }
     })
 }
@@ -127,4 +128,6 @@ export const setborder = ({newborder, cardid}) => dispatch => {
         }).then()
     }
 }
+
+
 

@@ -39,6 +39,18 @@ ul {
 .red {
     color: red;
 }
+.blue {
+    color: blue;
+}
+.green {
+    color: green;
+}
+.purple {
+    color: purple;
+}
+.yellow {
+    color: yellow;
+}
 .small {
     width: 250px;
     height: 100px;

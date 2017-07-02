@@ -62,7 +62,6 @@ class CardList extends React.Component {
             )}
             <p className="white">{this.props.nocards}</p>
         </div>
-
       </div>
     )
   }

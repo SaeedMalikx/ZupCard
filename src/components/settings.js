@@ -70,6 +70,10 @@ class Settings extends React.Component {
           <MenuItem value={"white"} primaryText="white" onClick={this.setfontcolor}/>
           <MenuItem value={"black"} primaryText="black" onClick={this.setfontcolor}/>
           <MenuItem value={"red"} primaryText="red" onClick={this.setfontcolor}/>
+          <MenuItem value={"blue"} primaryText="blue" onClick={this.setfontcolor}/>
+          <MenuItem value={"green"} primaryText="green" onClick={this.setfontcolor}/>
+          <MenuItem value={"purple"} primaryText="purple" onClick={this.setfontcolor}/>
+          <MenuItem value={"yellow"} primaryText="yellow" onClick={this.setfontcolor}/>
         </SelectField>
         <p className="centertext">OR</p>
         <Link to="/"><button className="buttonsignup" onClick={this.signout} >Sign Out</button></Link>
