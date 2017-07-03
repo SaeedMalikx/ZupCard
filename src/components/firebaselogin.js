@@ -113,7 +113,7 @@ class firebaselogin extends React.Component {
                         <input type="text" placeholder="Email" onChange={this.setuser}></input>
 
                         <h3>Password</h3>
-                        <input type="text" placeholder="Password" onChange={this.setpass}></input>
+                        <input type="password" placeholder="Password" onChange={this.setpass}></input>
 
                         <Link to="/"><button className="button" onClick={this.signinuser} >Sign in</button></Link>
                         <h3>Enter Email/Password Above and SignUp Instantly and Login</h3>

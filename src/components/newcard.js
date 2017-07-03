@@ -52,10 +52,10 @@ class Newcard extends React.Component {
   render() {
     return (
       <div>
-        <div className="centertext">
+        <div>
             <input type="text" placeholder="Front" onChange={this.setfront} value={this.state.Front}></input>
-            <p>Front Color</p>
             <SelectField
+            floatingLabelText="Front Color"
             value={this.state.frontcolor}
             onChange={this.handleChange}
             >
@@ -75,9 +75,8 @@ class Newcard extends React.Component {
                 <MenuItem value={"front chocolate"} primaryText="Chocolate"  />
             </SelectField>
             <input type="text" placeholder="Back" onChange={this.setbackside} value={this.state.Back}></input>
-            <p >Back Color</p>
             <SelectField
-            listStyle={{color: 'white'}}
+                floatingLabelText="Back Color"
                 value={this.state.backcolor}
                 onChange={this.handleChangeback}
             >
