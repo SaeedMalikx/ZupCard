@@ -24,7 +24,8 @@ class firebaselogin extends React.Component {
  
      this.state = {
        email: "",
-       password: ""
+       password: "",
+       democardborder: "cardborder"
      };
    }
   setuser = (user) => {
@@ -50,7 +51,13 @@ class firebaselogin extends React.Component {
       this.props.signin(user)
   }
 
-  
+  demosetborder = () => {
+    if (this.state.democardborder === "cardborder"){
+    this.setState({democardborder: "cardborderred"})
+    } else if (this.state.democardborder === "cardborderred"){
+      this.setState({democardborder: "cardborder"})
+    }
+  }
   
 
 
@@ -83,6 +90,24 @@ class firebaselogin extends React.Component {
                     </List>
                 </div>
                 ) : (<div>
+                    <div>  
+                        <div className="democardcontainer"> 
+                            <ul className="white">
+                                <div className="medium">
+                                <div className="cardcon">
+                                    <div className={this.state.democardborder}>
+                                        <div className="front bluelagoon">Create Study Flashcards and access them on any device</div>
+                                        <div className="back sherbat">
+                                            Star to mark as important, Customizable colors and size
+                                            <Star className="markbutton" onClick={this.demosetborder}></Star>
+                                            <Delete className="deletebutton" ></Delete>
+                                        </div>     
+                                    </div>   
+                                </div> 
+                                </div>     
+                            </ul>
+                        </div>
+                    </div>
                     <form >
                         <h3>Email</h3>
                         <input type="text" placeholder="Email" onChange={this.setuser}></input>

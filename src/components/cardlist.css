@@ -102,20 +102,20 @@ ul {
 }
 
 
-.front.yellow{
+.front.brightyellow{
     background-image: linear-gradient( 135deg, #FDEB71 0%, #F8D800 100%);
 }
 
-.back.yellow{
+.back.brightyellow{
     background-image: linear-gradient( 135deg, #FDEB71 0%, #F8D800 100%);
 }
 
 
-.front.blue{
+.front.skyblue{
     background-image: linear-gradient( 135deg, #ABDCFF 0%, #0396FF 100%);
 }
 
-.back.blue{
+.back.skyblue{
     background-image: linear-gradient( 135deg, #ABDCFF 0%, #0396FF 100%);
 }
 
@@ -127,18 +127,18 @@ ul {
     background-image: linear-gradient( 135deg, #FEB692 0%, #EA5455 100%);
 }
 
-.front.purple{
+.front.coolpurple{
     background-image: linear-gradient( 135deg, #CE9FFC 0%, #7367F0 100%);
 }
 
-.back.purple{
+.back.coolpurple{
     background-image: linear-gradient( 135deg, #CE9FFC 0%, #7367F0 100%);
 }
-.front.green{
+.front.lightgreen{
     background-image: linear-gradient( 135deg, #81FBB8 0%, #28C76F 100%);
 }
 
-.back.green{
+.back.lightgreen{
     background-image: linear-gradient( 135deg, #81FBB8 0%, #28C76F 100%);
 }
 .front.darkred{

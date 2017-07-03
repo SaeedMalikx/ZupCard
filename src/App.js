@@ -61,7 +61,7 @@ class App extends Component {
         <div className="App">
           <div className="navbar">
               <div className="navcontainer">
-                <NavLink activeClassName="selected" to="/"><span className="title">ZAPCARD </span></NavLink>
+                <NavLink activeClassName="selected" to="/"><span className="title">ZUPCARD </span></NavLink>
                 <span className="filler"/>
                 <Link to="/cards"><CardsIcon color={red500} style={style.small} /></Link>
                 <Addbox style={style.small} onClick={this.opennewcard} color={blue500} />

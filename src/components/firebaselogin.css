@@ -42,3 +42,8 @@ h3{
     color: white;
 }
 
+.democardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

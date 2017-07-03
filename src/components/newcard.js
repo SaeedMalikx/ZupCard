@@ -14,8 +14,8 @@ class Newcard extends React.Component {
      this.state = {
        Front: "",
        Back: "",
-       frontcolor: "front yellow",
-       backcolor: "back yellow",
+       frontcolor: "front bluelagoon",
+       backcolor: "back bluelagoon",
        userid: this.props.useruid
      }
    }
@@ -59,11 +59,11 @@ class Newcard extends React.Component {
             value={this.state.frontcolor}
             onChange={this.handleChange}
             >
-                <MenuItem value={"front yellow"} primaryText="Yellow"  />
-                <MenuItem value={"front blue"} primaryText="Blue" />
+                <MenuItem value={"front brightyellow"} primaryText="BrightYellow"  />
+                <MenuItem value={"front skyblue"} primaryText="Sky Blue" />
                 <MenuItem value={"front orange"} primaryText="Orange"  />
-                <MenuItem value={"front purple"} primaryText="Purple" />
-                <MenuItem value={"front green"} primaryText="Green"  />
+                <MenuItem value={"front coolpurple"} primaryText="Cool Purple" />
+                <MenuItem value={"front lightgreen"} primaryText="Light Green"  />
                 <MenuItem value={"front darkred"} primaryText="Dark Red"  />
                 <MenuItem value={"front bluelagoon"} primaryText="Blue Lagoon"  />
                 <MenuItem value={"front honeydew"} primaryText="Honey Dew"  />
@@ -81,11 +81,11 @@ class Newcard extends React.Component {
                 value={this.state.backcolor}
                 onChange={this.handleChangeback}
             >
-                <MenuItem value={"back yellow"} primaryText="Yellow" />
-                <MenuItem value={"back blue"} primaryText="Blue" />
+                <MenuItem value={"back brightyellow"} primaryText="BrightYellow" />
+                <MenuItem value={"back skyblue"} primaryText="Sky Blue" />
                 <MenuItem value={"back orange"} primaryText="Orange" />
-                <MenuItem value={"back purple"} primaryText="Purple" />
-                <MenuItem value={"back green"} primaryText="Green" />
+                <MenuItem value={"back coolpurple"} primaryText="Cool Purple" />
+                <MenuItem value={"back lightgreen"} primaryText="Light Green" />
                 <MenuItem value={"back darkred"} primaryText="Darkred"  />
                 <MenuItem value={"back bluelagoon"} primaryText="Blue Lagoon"  />
                 <MenuItem value={"back honeydew"} primaryText="Honey Dew"  />
