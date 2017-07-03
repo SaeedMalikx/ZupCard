@@ -97,7 +97,7 @@ class firebaselogin extends React.Component {
                                 <div className="cardcon">
                                     <div className={this.state.democardborder}>
                                         <div className="front bluelagoon">Create Study Flashcards and access them on any device</div>
-                                        <div className="back sherbat">
+                                        <div className="back cottoncandy">
                                             Star to mark as important, Customizable colors and size
                                             <Star className="markbutton" onClick={this.demosetborder}></Star>
                                             <Delete className="deletebutton" ></Delete>
