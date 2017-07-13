@@ -70,7 +70,6 @@ class firebaselogin extends React.Component {
                         <ListItem style={style.small} disabled={true} leftAvatar={<Avatar />}>
                             Signed In As {this.props.userid}
                         </ListItem>
-
                         <ListItem style={style.small} disabled={true} leftAvatar={<Avatar color={red500} backgroundColor={grey900} icon={<CardsIcon />} />}>
                             View Your Cards
                         </ListItem>

@@ -15,6 +15,11 @@
     bottom: 0;
     left: 0;
 }
+.editbutton {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+}
 
 
 .cardborder{
@@ -220,10 +225,10 @@ ul {
         height: 200px;
     }
     .front {
-        font-size: 15px;
+        font-size: 18px;
     }
     .back {
-        font-size: 15px;
+        font-size: 18px;
     }
 }
 

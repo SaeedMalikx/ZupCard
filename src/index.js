@@ -16,12 +16,6 @@ const injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 const config = {
-    apiKey: "AIzaSyBx8vr6sOkdMmLBpRorrKPVH5JGYEZgsM8",
-    authDomain: "flashcard-e07e8.firebaseapp.com",
-    databaseURL: "https://flashcard-e07e8.firebaseio.com",
-    projectId: "flashcard-e07e8",
-    storageBucket: "flashcard-e07e8.appspot.com",
-    messagingSenderId: "115864281901"
   };
 firebase.initializeApp(config);
 

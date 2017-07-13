@@ -2,10 +2,13 @@ import React from 'react';
 import './cardlist.css'
 import Delete from 'material-ui/svg-icons/action/delete';
 import Star from 'material-ui/svg-icons/toggle/star';
+import Edit from 'material-ui/svg-icons/image/edit'
+import Dialog from 'material-ui/Dialog';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import {connect} from 'react-redux';
 
-import { deletecard, setborder } from '../actions/userActions';
+import { deletecard, setborder, setedit } from '../actions/userActions';
 
 
 class CardList extends React.Component {
@@ -14,6 +17,10 @@ class CardList extends React.Component {
  
      this.state = {
        border: "cardborder",
+       Front: "",
+       Back: "",
+       open: false,
+       cardid: ""
      }
    } 
 
@@ -38,6 +45,30 @@ class CardList extends React.Component {
     }
     this.props.setborder(bordervalue)
   }
+
+  openedit = (id, front, back) => {
+    this.setState({open: true, Front: front, Back: back, cardid: id})
+  }
+
+  setfront = (front) => {
+      this.setState({Front: front.target.value})
+  }
+
+  setbackside = (back) => {
+      this.setState({Back: back.target.value})
+  }
+  saveedit = () => {
+      const newcard = {
+        front: this.state.Front,
+        back: this.state.Back,
+        id: this.state.cardid
+      }
+      this.props.setedit(newcard)
+  }
+
+  closeedit = () => {
+    this.setState({open: false, Front: "", Back: "", cardid: ""})
+  }
   render() {
     return (
       <div>
@@ -52,6 +83,7 @@ class CardList extends React.Component {
                                 <div className={card.backcolor}>
                                     {card.back} 
                                     <Star className="markbutton" onClick={() => {this.setborder(card.id)}}></Star>
+                                    <Edit className="editbutton" onClick={() => {this.openedit(card.id, card.front, card.back)}}></Edit>
                                     <Delete className="deletebutton" onClick={() => {this.deletecard(card.id)}}></Delete>
                                 </div>     
                               </div>   
@@ -61,6 +93,16 @@ class CardList extends React.Component {
                 </div>
             )}
             <p className="white">{this.props.nocards}</p>
+            <Dialog
+              title="Dialog With Actions"
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.closeedit}
+            >
+              <input type="text" placeholder="Front" onChange={this.setfront} value={this.state.Front}></input>
+              <input type="text" placeholder="Back" onChange={this.setbackside} value={this.state.Back}></input>
+              <RaisedButton label="Save" onTouchTap={this.saveedit} />
+            </Dialog>
         </div>
       </div>
     )
@@ -78,7 +120,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   deletecard: id => dispatch(deletecard(id)),
-  setborder: bordervalue => dispatch(setborder(bordervalue))
+  setborder: bordervalue => dispatch(setborder(bordervalue)),
+  setedit: newcard => dispatch(setedit(newcard))
 })
 
 

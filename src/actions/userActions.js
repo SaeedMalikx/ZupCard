@@ -129,5 +129,14 @@ export const setborder = ({newborder, cardid}) => dispatch => {
     }
 }
 
+export const setedit = ({front, back, id}) => dispatch => {
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+        firebase.database().ref('users').child(user.uid).child('cards').child(id).update({
+            'front': front,
+            'back': back,
+        }).then()
+    }
+}
 
 
