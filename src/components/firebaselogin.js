@@ -10,12 +10,12 @@ import SettingIcon from 'material-ui/svg-icons/action/settings';
 import Addbox from 'material-ui/svg-icons/content/add-box';
 import CardsIcon from 'material-ui/svg-icons/image/grid-on';
 import Delete from 'material-ui/svg-icons/action/delete';
+import Caticon from 'material-ui/svg-icons/action/bookmark';
 import Star from 'material-ui/svg-icons/toggle/star';
-import {grey50, red500, blue500, grey900} from 'material-ui/styles/colors';
+import {grey50, red500, blue500, grey900, green500} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-
 
 
 class firebaselogin extends React.Component {
@@ -76,6 +76,9 @@ class firebaselogin extends React.Component {
                         <ListItem style={style.small}disabled={true} leftAvatar={<Avatar color={blue500} backgroundColor={grey900} icon={<Addbox />} />}>
                             Add a New Card(Customizable Front/Back Color)
                         </ListItem>
+                        <ListItem style={style.small} disabled={true} leftAvatar={<Avatar color={green500} backgroundColor={grey900} icon={<Caticon />} />}>
+                            Change Category(Set to Default on Login)
+                        </ListItem>
                         <ListItem style={style.small} disabled={true} leftAvatar={<Avatar color={grey50} backgroundColor={grey900} icon={<SettingIcon />} />}>
                             Settings(Change Card Size and Font Color or Signout)
                         </ListItem>
@@ -85,8 +88,8 @@ class firebaselogin extends React.Component {
                         <ListItem style={style.small} disabled={true} leftAvatar={<Avatar color={red500} backgroundColor={grey900} icon={<Delete />} />}>
                             Delete the Current Card
                         </ListItem>
-                        <Link to="/cards"><button className="button" >View My Cards</button></Link> 
-                    </List>
+                    </List>  
+                        <Link to="/cards"><button className="button">View Cards</button></Link>       
                 </div>
                 ) : (<div>
                     <div>  
@@ -131,7 +134,7 @@ class firebaselogin extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isloggedin: state.user.isloggedin,
-        userid: state.user.userid
+        userid: state.user.userid,
     };
 }
 

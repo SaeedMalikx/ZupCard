@@ -4,7 +4,10 @@ const initialState = {
   nocards: "No Cards, Add Some",
   size: "medium",
   fontcolor: "white",
-  isloggedin: false
+  isloggedin: false,
+  currentcat: "Default",
+  catlist: [],
+  cardcount: null,
 };
 
 
@@ -22,7 +25,8 @@ const user = (state = initialState, action) => {
     case "CLEAR_CARDS": 
       return Object.assign({}, state, {
         cardlist: [],
-        nocards: " No Cards, Add Some"
+        nocards: " No Cards, Add Some",
+        cardcount: null
       })
     case "SET_CARDS_FONTCOLOR": 
         return Object.assign({}, state, {
@@ -38,6 +42,23 @@ const user = (state = initialState, action) => {
         isloggedin: action.payload,
         
       })
+    case "SET_CARDSCAT": 
+      return Object.assign({}, state, {
+          catlist: action.payload,
+          
+        })
+    case "CLEAR_CARDSCAT": 
+      return Object.assign({}, state, {
+        catlist: []
+      })
+    case "SET_CAT": 
+      return Object.assign({}, state, {
+        currentcat: action.payload
+      })
+    case "SET_CARDLENGTH": 
+      return Object.assign({}, state, {
+          cardcount: action.payload
+        })
     default:
       return state;
   }

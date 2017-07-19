@@ -36,10 +36,10 @@ export const signin = ({email, password}) => dispatch => {
       });
 };
 
-export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatch => {
+export const addcard = ({front, back, userid, frontcolor, backcolor}) => (dispatch, getState) => {
     const user = firebase.auth().currentUser;
     if (user != null) {
-    firebase.database().ref('users').child(user.uid).child('cards').push({
+    firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').push({
         'front': front,
         'back': back,
         'frontcolor': frontcolor,
@@ -48,13 +48,13 @@ export const addcard = ({front, back, userid, frontcolor, backcolor}) => dispatc
     })}
 }
 
-export const cardrefresh = () => dispatch => {
+export const cardrefresh = () => (dispatch, getState) => {
     firebase.auth().onAuthStateChanged(user => {
         if (user != null) {
             dispatch({type: "SET_ISLOGGEDIN", payload: true})
             dispatch({type: "SET_USERINFO", payload: user.email})
             
-            firebase.database().ref('users').child(user.uid).child('cards').on('value', snap =>{
+            firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').on('value', snap =>{
                 
                 if (snap.val()) {
                     let fcards = snap.val();
@@ -69,9 +69,26 @@ export const cardrefresh = () => dispatch => {
                         border: fcards[card].border
                       })
                       dispatch({type: "SET_CARDS", payload: cardlist})
+                      dispatch({type: "SET_CARDLENGTH", payload: cardlist.length})
                     }
                 } else {
                     dispatch({type: "CLEAR_CARDS", payload: []})
+                } 
+            });
+            firebase.database().ref('users').child(user.uid).child('categories').on('value', snap =>{
+                
+                if (snap.val()) {
+                    let cardcat = snap.val();
+                    let cardcatlist = [];
+                    for (let cat in cardcat) {
+                      cardcatlist.push({
+                        catid: cat,
+                        category: cardcat[cat].category
+                      })
+                      dispatch({type: "SET_CARDSCAT", payload: cardcatlist})
+                    }
+                } else {
+                    dispatch({type: "CLEAR_CARDSCAT", payload: []})
                 } 
             });
         } else {
@@ -81,10 +98,10 @@ export const cardrefresh = () => dispatch => {
     })
 }
 
-export const deletecard = (id) => dispatch => {
+export const deletecard = (id) => (dispatch, getState) => {
     const user = firebase.auth().currentUser;
     if (user != null) {
-        firebase.database().ref('users').child(user.uid).child('cards').child(id).remove()
+        firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').child(id).remove()
     }
 }
 
@@ -120,23 +137,67 @@ export const changecardsize = (size) => dispatch =>{
 }
 
 
-export const setborder = ({newborder, cardid}) => dispatch => {
+export const setborder = ({newborder, cardid}) => (dispatch, getState) => {
     const user = firebase.auth().currentUser;
     if (user != null) {
-        firebase.database().ref('users').child(user.uid).child('cards').child(cardid).update({
+        firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').child(cardid).update({
             'border': newborder
         }).then()
     }
 }
 
-export const setedit = ({front, back, id}) => dispatch => {
+export const setedit = ({front, back, id}) => (dispatch, getState) => {
     const user = firebase.auth().currentUser;
     if (user != null) {
-        firebase.database().ref('users').child(user.uid).child('cards').child(id).update({
+        firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').child(id).update({
             'front': front,
             'back': back,
-        }).then()
+        })
     }
 }
 
+export const addcategory = (cat) => dispatch =>{
+    const user = firebase.auth().currentUser;
+    firebase.database().ref('users').child(user.uid).child('categories').push({
+                        'category': cat
+                    })
+}
+
+export const deletecategory = ({catid, catname}) => dispatch =>{
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+    firebase.database().ref('users').child(user.uid).child('categories').child(catid).remove()
+    firebase.database().ref('users').child(user.uid).child('category').child(catname).remove()
+    }
+}
+
+
+export const changecat = (cat) => (dispatch, getState) =>{
+    const user = firebase.auth().currentUser;
+    dispatch({type: "SET_CAT", payload: cat})
+    if (user != null) {
+            firebase.database().ref('users').child(user.uid).child('category').child(getState().user.currentcat).child('cards').on('value', snap =>{
+                if (snap.val()) {
+                    let fcards = snap.val();
+                    let cardlist = [];
+                    for (let card in fcards) {
+                      cardlist.push({
+                        id: card,
+                        front: fcards[card].front,
+                        back: fcards[card].back,
+                        frontcolor: fcards[card].frontcolor,
+                        backcolor: fcards[card].backcolor,
+                        border: fcards[card].border
+                      })
+                      dispatch({type: "SET_CARDS", payload: cardlist})
+                      dispatch({type: "SET_CARDLENGTH", payload: cardlist.length})
+                    }
+                } else {
+                    dispatch({type: "CLEAR_CARDS", payload: []})
+                } 
+            });
+        } else {
+            dispatch({type: "CLEAR_CARDS", payload: []})
+        }
+}
 

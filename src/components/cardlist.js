@@ -72,6 +72,9 @@ class CardList extends React.Component {
   render() {
     return (
       <div>
+        <div className="centerlisttitle">
+          <button className="buttonbluelist" >{this.props.currentcat}</button>
+        </div>
         <div className="cardcontainer">
             {this.props.cardlist.map((card, index) =>
                 <div key={index}>
@@ -94,7 +97,7 @@ class CardList extends React.Component {
             )}
             <p className="white">{this.props.nocards}</p>
             <Dialog
-              title="Dialog With Actions"
+              title="Edit Card"
               modal={false}
               open={this.state.open}
               onRequestClose={this.closeedit}
@@ -114,7 +117,8 @@ const mapStateToProps = (state) => {
         cardlist: state.user.cardlist,
         nocards: state.user.nocards,
         cardsize: state.user.size,
-        fontcolor: state.user.fontcolor
+        fontcolor: state.user.fontcolor,
+        currentcat: state.user.currentcat
     }
 }
 
